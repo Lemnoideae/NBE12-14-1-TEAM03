@@ -1,7 +1,6 @@
 package com.programmers.be14.nbe12141team03.domain.product.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;

@@ -1,5 +1,6 @@
 plugins {
     java
+    kotlin("jvm") version "2.4.20"
     id("org.springframework.boot") version "4.1.1"
     id("io.spring.dependency-management") version "1.1.7"
 }
@@ -18,10 +19,18 @@ repositories {
     mavenCentral()
 }
 
+kotlin {
+    sourceSets.main {
+        kotlin.srcDir("src/main/java")
+    }
+    jvmToolchain(25)
+}
+
 dependencies {
     annotationProcessor("org.projectlombok:lombok")
     compileOnly("org.projectlombok:lombok")
     implementation("io.github.cdimascio:dotenv-java:3.2.0")
+    implementation(kotlin("reflect"))
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
     implementation("org.springframework.boot:spring-boot-h2console")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")

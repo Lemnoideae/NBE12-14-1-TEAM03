@@ -6,8 +6,6 @@ import com.programmers.be14.nbe12141team03.domain.order.entity.OrderResult;
 import com.programmers.be14.nbe12141team03.domain.order.repository.OrderResultRepository;
 import com.programmers.be14.nbe12141team03.domain.product.entity.Product;
 import com.programmers.be14.nbe12141team03.domain.product.repository.ProductRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;

@@ -1,6 +1,5 @@
 package com.programmers.be14.nbe12141team03.domain.order.dto.modify;
 
-import com.programmers.be14.nbe12141team03.domain.order.dto.OrderItemRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
