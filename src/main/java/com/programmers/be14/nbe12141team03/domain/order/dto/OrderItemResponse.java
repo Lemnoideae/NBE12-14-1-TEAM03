@@ -17,7 +17,7 @@ public record OrderItemResponse(
                 orderItem.getProduct().getPhotoUrl(),
                 orderItem.getOrderPrice(),
                 orderItem.getQuantity(),
-                orderItem.getTotalPrice()
+                orderItem.totalPrice()
         );
     }
 }

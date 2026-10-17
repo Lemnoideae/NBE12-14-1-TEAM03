@@ -69,9 +69,9 @@ open class OrderResult() {
     // 연관관계 편의 메서드
     fun addOrderItem(orderItem: OrderItem) {
         orderItemList.add(orderItem)
-        orderItem.setOrderResult(this)
+        orderItem.orderResult = this
         // 총금액이 long 범위 초과하면 예외 발생
-        totalPrice = Math.addExact(totalPrice, orderItem.totalPrice)
+        totalPrice = Math.addExact(totalPrice, orderItem.totalPrice())
     }
 
     // 14:00 미만의 주문은 당일 배송
