@@ -36,7 +36,7 @@ class OrderResultController(
     fun adminOrderResultList(): RsData<List<OrderResultResponse>> = RsData(
         "200-1",
         "모든 고객의 전체 주문 내역을 조회했습니다.",
-        orderResultService.allList
+        orderResultService.getAllList()
     )
 
     // [관리자] 배송일 기준 합배송 내역 조회
