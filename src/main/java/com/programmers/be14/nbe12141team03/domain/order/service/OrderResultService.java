@@ -90,7 +90,7 @@ public class OrderResultService {
                                 item.getProduct().getName(),
                                 item.getProduct().getPhotoUrl(),
                                 item.getQuantity(),
-                                item.getTotalPrice()
+                                item.totalPrice()
                         ),
                         (existing, incoming) -> new MergedItemResponse(
                                 existing.productId(),
