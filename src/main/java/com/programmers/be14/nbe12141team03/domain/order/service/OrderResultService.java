@@ -93,13 +93,13 @@ public class OrderResultService {
                                 item.totalPrice()
                         ),
                         (existing, incoming) -> new MergedItemResponse(
-                                existing.productId(),
-                                existing.productName(),
-                                existing.photoUrl(),
-                                existing.quantity() + incoming.quantity(),
+                                existing.getProductId(),
+                                existing.getProductName(),
+                                existing.getPhotoUrl(),
+                                existing.getQuantity() + incoming.getQuantity(),
                                 Math.addExact(
-                                        existing.totalPrice(),
-                                        incoming.totalPrice()
+                                        existing.getTotalPrice(),
+                                        incoming.getTotalPrice()
                                 )
                         ));
             }
@@ -162,7 +162,7 @@ public class OrderResultService {
         for (OrderItemRequest item : request.getItems()) {
 
             // 상품 수량은 1개 이상만 허용
-            if (item.quantity() <= 0) {
+            if (item.getQuantity() <= 0) {
                 throw new ApiServiceException(
                         "400-1",
                         "상품 수량은 1개 이상이어야 합니다."
@@ -170,7 +170,7 @@ public class OrderResultService {
             }
 
             // 상품 ID로 상품을 조회하고, 존재하지 않으면 404 예외 발생
-            Product product = productRepository.findById(item.productId())
+            Product product = productRepository.findById(item.getProductId())
                     .orElseThrow(() ->
                             new ApiServiceException(
                                     "404-1",
@@ -181,7 +181,7 @@ public class OrderResultService {
             OrderItem orderItem = new OrderItem(
                     product,
                     product.getPrice(),
-                    item.quantity()
+                    item.getQuantity()
             );
 
             orderResult.addOrderItem(orderItem);
@@ -231,19 +231,19 @@ public class OrderResultService {
         }
 
         // 상품 존재 여부 예외 처리 및 새로운 리스트 생성
-        List<OrderItem> modifiedItemList = request.orderItemList().stream()
+        List<OrderItem> modifiedItemList = request.getOrderItemList().stream()
                 .map(req -> {
-                    Product product = this.productRepository.findById(req.productId())
+                    Product product = this.productRepository.findById(req.getProductId())
                             .orElseThrow(() -> new ApiServiceException(
                                     "404-2",
-                                    "%d번 상품을 찾을 수 없습니다.".formatted(req.productId())));
-                    return new OrderItem(product, product.getPrice(), req.quantity());
+                                    "%d번 상품을 찾을 수 없습니다.".formatted(req.getProductId())));
+                    return new OrderItem(product, product.getPrice(), req.getQuantity());
                 })
                 .toList();
 
         origin.modify(
-                request.shippingAddress(),
-                request.zipCode(),
+                request.getShippingAddress(),
+                request.getZipCode(),
                 modifiedItemList
         );
 
