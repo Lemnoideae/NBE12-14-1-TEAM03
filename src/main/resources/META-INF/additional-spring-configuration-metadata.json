@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "custom.upload.image-dir",
+      "type": "java.lang.String",
+      "description": "이미지 업로드 및 정적 이미지 서빙에 사용할 디렉터리 경로입니다.",
+      "defaultValue": "images/"
+    }
+  ]
+}
