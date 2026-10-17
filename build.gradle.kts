@@ -4,7 +4,6 @@ plugins {
     kotlin("plugin.spring") version "2.4.20"
     kotlin("plugin.jpa") version "2.4.20"
     kotlin("plugin.allopen") version "2.4.20"
-    kotlin("plugin.lombok") version "2.4.20"
     id("org.springframework.boot") version "4.1.1"
     id("io.spring.dependency-management") version "1.1.7"
 }
@@ -34,8 +33,6 @@ kotlin {
 }
 
 dependencies {
-    annotationProcessor("org.projectlombok:lombok")
-    compileOnly("org.projectlombok:lombok")
     implementation("io.github.cdimascio:dotenv-java:3.2.0")
     implementation(kotlin("reflect"))
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.0")
@@ -44,10 +41,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-webmvc")
     runtimeOnly("com.h2database:h2")
-    testAnnotationProcessor("org.projectlombok:lombok")
-    testAnnotationProcessor("org.projectlombok:lombok")
-    testCompileOnly("org.projectlombok:lombok")
-    testCompileOnly("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
@@ -55,7 +48,6 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     implementation("tools.jackson.module:jackson-module-kotlin")
 }
-
 
 tasks.withType<Test> {
     useJUnitPlatform()
