@@ -93,13 +93,13 @@ public class OrderResultService {
                                 item.totalPrice()
                         ),
                         (existing, incoming) -> new MergedItemResponse(
-                                existing.productId(),
-                                existing.productName(),
-                                existing.photoUrl(),
-                                existing.quantity() + incoming.quantity(),
+                                existing.getProductId(),
+                                existing.getProductName(),
+                                existing.getPhotoUrl(),
+                                existing.getQuantity() + incoming.getQuantity(),
                                 Math.addExact(
-                                        existing.totalPrice(),
-                                        incoming.totalPrice()
+                                        existing.getTotalPrice(),
+                                        incoming.getTotalPrice()
                                 )
                         ));
             }
