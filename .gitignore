@@ -1,5 +1,6 @@
 HELP.md
 .gradle
+/.kotlin/
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
@@ -38,11 +39,22 @@ out/
 
 ### custom ###
 .env
+/.env.*
+!/.env.example
+!/.env.sample
+!/.env.template
 *.db
-.agents/rules/grinds-n-circle-style-rules.md
-.DS_Store
 .DS_Store
 peer_review.pdf
 presentation.pdf
 FACT_AND_LESSON_1ST_PROJECT.md
 JAVA_TO_KOTLIN_MIGRATION_PROMPT.md
+
+### Local agent instructions and artifacts ###
+/.agents/
+/.codex/
+/AGENTS.md
+/GEMINI.md
+
+### Uploaded images (UUID-prefixed names from ImageService) ###
+/images/????????-????-????-????-????????????_*
