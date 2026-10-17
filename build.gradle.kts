@@ -30,9 +30,6 @@ repositories {
 }
 
 kotlin {
-    sourceSets.main {
-        kotlin.srcDir("src/main/java")
-    }
     jvmToolchain(25)
 }
 
