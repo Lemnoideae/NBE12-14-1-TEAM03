@@ -14,5 +14,5 @@ data class ProductCreateRequest(
     @Positive(message = "상품 가격은 음수이거나 0일 수 없습니다.")
     val price: Int,
 
-    val photoUrl: String?
+    val photoUrl: String? = null
 )

@@ -10,14 +10,14 @@ class ProductService(
     private val productRepository: ProductRepository
 ) {
     fun getProducts(): List<ProductResponse> = productRepository.findAll()
-                .map { ProductResponse(it) }
+        .map { ProductResponse(it) }
 
     fun create(
-        name: String, 
-        category: String, 
-        price: Int, 
-        photoUrl: String
+        name: String,
+        category: String,
+        price: Int,
+        photoUrl: String?
     ) = Product(name, category, price, photoUrl).also {
-            productRepository.save(it)
-        }
+        productRepository.save(it)
+    }
 }

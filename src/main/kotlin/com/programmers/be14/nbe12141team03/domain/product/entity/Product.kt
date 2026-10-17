@@ -16,19 +16,19 @@ class Product(
 
     @Column(nullable = false)
     var name: String,
-    
+
     @Column(nullable = false)
     var category: String,
-    
+
     @Column(nullable = false)
     var price: Int,
-    
+
     @Column
     var photoUrl: String? = null,
-    
+
     @CreatedDate
     var createDate: LocalDateTime? = null,
-    
+
     @LastModifiedDate
     var modifyDate: LocalDateTime? = null
 
@@ -40,10 +40,6 @@ class Product(
         name = name,
         category = category,
         price = price,
-        photoUrl = photoUrl,
-        createDate = LocalDateTime.now(),
-        modifyDate = null
-    ) {
-        modifyDate = this.createDate
-    }
+        photoUrl = photoUrl
+    )
 }
