@@ -4,7 +4,6 @@ import com.programmers.be14.nbe12141team03.domain.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
 @Entity
@@ -17,7 +16,6 @@ public class OrderItem {
     // 주문 결과와의 N:1 매핑
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ORDER_RESULT_ID", nullable = false)
-    @Setter
     private OrderResult orderResult;
 
     // 상품과의 N:1 매핑
@@ -35,6 +33,10 @@ public class OrderItem {
         this.product = product;
         this.orderPrice = orderPrice;
         this.quantity = quantity;
+    }
+
+    public void setOrderResult(OrderResult orderResult) {
+        this.orderResult = orderResult;
     }
 
     // 주문 상품 총 가격 계산

@@ -82,6 +82,31 @@ class ImageServiceTest {
     }
 
     @Test
+    @DisplayName("파일이 null이면 기존 오류 코드로 거부")
+    void uploadNullFile_ThrowsException() {
+        ImageService imageService = createServiceWithTempDir();
+
+        assertThatThrownBy(() -> imageService.uploadImage(null))
+                .isInstanceOf(ApiServiceException.class)
+                .satisfies(error -> assertThat(((ApiServiceException) error).getRsData().getResultCode())
+                        .isEqualTo("400-1"));
+    }
+
+    @Test
+    @DisplayName("확장자 구분자가 없는 파일명은 기존 오류 코드로 거부")
+    void uploadFilenameWithoutDot_ThrowsException() {
+        ImageService imageService = createServiceWithTempDir();
+        MockMultipartFile file = new MockMultipartFile(
+                "file", "filename", "image/png", "content".getBytes()
+        );
+
+        assertThatThrownBy(() -> imageService.uploadImage(file))
+                .isInstanceOf(ApiServiceException.class)
+                .satisfies(error -> assertThat(((ApiServiceException) error).getRsData().getResultCode())
+                        .isEqualTo("400-2"));
+    }
+
+    @Test
     @DisplayName("지원하지 않는 확장자 업로드 시 예외 발생")
     void uploadUnsupportedExtension_ThrowsException() {
         ImageService imageService = createServiceWithTempDir();
