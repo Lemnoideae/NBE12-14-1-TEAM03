@@ -9,7 +9,7 @@ import { MergedShipment, OrderResultResponse } from "@/types/order";
 import { useSearchParams } from "next/navigation";
 import { api, ApiError } from "@/lib/api";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 // 로컬 시간 기준 yyyy-MM-dd
 const todayStr = () => {
@@ -18,7 +18,7 @@ const todayStr = () => {
     return new Date(now.getTime() - offset).toISOString().split("T")[0];
 };
 
-export default function AdminOrdersPage(){
+function AdminOrdersContent() {
     const searchParams = useSearchParams();
     const [orders, setOrders] = useState<OrderResultResponse[]>([]);
     const [shipments, setShipments] = useState<MergedShipment[]>([]);
@@ -193,6 +193,20 @@ export default function AdminOrdersPage(){
             <ShipmentList shipments={shipments} backQuery={backQuery} />
         )}
         </>
+    );
+}
+
+export default function AdminOrdersPage() {
+    return (
+        <Suspense
+            fallback={
+                <div className="text-center py-5 text-body-secondary" role="status">
+                    주문 목록을 불러오는 중입니다...
+                </div>
+            }
+        >
+            <AdminOrdersContent />
+        </Suspense>
     );
 }
 
